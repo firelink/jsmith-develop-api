@@ -12,7 +12,7 @@ func main() {
 	c := api.Controller{}
 	e := api.APIEndpoint{}
 
-	e.AddNewEndpoint("/", handleTest)
+	e.AddNewEndpoint("/test", handleTest)
 
 	a := api.Router{Controller: c}
 	err := http.ListenAndServe(":8080", &a)
