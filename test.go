@@ -10,15 +10,18 @@ import (
 
 func main() {
 	c := api.Controller{}
-	a := api.API{Controller: c}
-	err := http.ListenAndServe(":8080", &a)
+	e := api.APIEndpoint{}
 
-	rWriter := a.GetHTTPWriter()
-	test := a.GetData()
+	e.AddNewEndpoint("/", handleTest)
+
+	a := api.Router{Controller: c}
+	err := http.ListenAndServe(":8080", &a)
 
 	if err != nil {
 		log.Fatalf("Could not start server: %s\n", err.Error())
 	}
+}
 
-	io.WriteString(rWriter, test)
+func handleTest(w http.ResponseWriter) {
+	io.WriteString(w, "Test")
 }
