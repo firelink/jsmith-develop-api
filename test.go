@@ -14,7 +14,7 @@ func main() {
 
 	e.AddNewEndpoint("/test", handleTest)
 
-	a := api.Router{Controller: c}
+	a := api.Router{Controller: c, APIEndpoint: e}
 	err := http.ListenAndServe(":8080", &a)
 
 	if err != nil {

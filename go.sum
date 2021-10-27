@@ -1,2 +1,6 @@
 github.com/argSea/nauplius v0.0.0-20211027032031-db152c2d01c5 h1:1j99MSFkQLeRPGNhOs8suNVWgrRc8di5af+lE2xJyuU=
 github.com/argSea/nauplius v0.0.0-20211027032031-db152c2d01c5/go.mod h1:KT6QFWhgnxpUkys84Bd8XwP+d4rA1r1MYtedQve1FM8=
+github.com/argSea/nauplius v0.2.0 h1:EFr0YN6GH44/9lwF9HTU2F0KBgGbV0s2201PE+i2TSY=
+github.com/argSea/nauplius v0.2.0/go.mod h1:KT6QFWhgnxpUkys84Bd8XwP+d4rA1r1MYtedQve1FM8=
+github.com/argSea/nauplius v0.2.1 h1:uj8RkSQPWXM78jTOqoOmtMkKE5V9FdeNFfX/LrL4324=
+github.com/argSea/nauplius v0.2.1/go.mod h1:KT6QFWhgnxpUkys84Bd8XwP+d4rA1r1MYtedQve1FM8=
