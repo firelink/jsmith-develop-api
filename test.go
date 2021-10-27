@@ -18,7 +18,7 @@ func main() {
 
 	if err != nil {
 		log.Fatalf("Could not start server: %s\n", err.Error())
-	} else {
-		io.WriteString(rWriter, test)
 	}
+
+	io.WriteString(rWriter, test)
 }
