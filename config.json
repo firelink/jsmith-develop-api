@@ -1,0 +1,12 @@
+{
+    "mongo": {
+        "host":"jsmith-develop.com",
+        "port":"27017",
+        "user":"kenobi",
+        "pass":"sdeMH9GjrPAAfZJjmQwM",
+        "dbName":"jsmith-develop"
+    },
+    "redis":{
+
+    }
+}
