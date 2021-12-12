@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/firelink/api.jsmith-develop.com/argSea/entity"
-	"github.com/firelink/api.jsmith-develop.com/argSea/entity/helper"
+	"github.com/firelink/api.jsmith-develop.com/argSea/helper"
 	"github.com/firelink/api.jsmith-develop.com/argSea/structure/argStore"
 )
 
