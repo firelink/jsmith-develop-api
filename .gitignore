@@ -15,5 +15,5 @@
 # vendor/
 
 
-.config
-.json
+*.config
+*.json
