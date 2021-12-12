@@ -4,7 +4,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/firelink/api.jsmith-develop.com/argSea/presenter"
 	"github.com/firelink/api.jsmith-develop.com/argSea/repo"
 	"github.com/firelink/api.jsmith-develop.com/argSea/service"
 	"github.com/firelink/api.jsmith-develop.com/argSea/structure/argStore"
@@ -41,7 +40,6 @@ func main() {
 	//User
 	userRepo := repo.NewUserRepo(argStore.NewMordor(mHost, mUser, mPass, mDB, userTable))
 	userCase := usecase.NewUserCase(userRepo)
-	userPresenter := presenter.NewUserPresenter()
 
 	//Project
 	projRepo := repo.NewProjectRepo(argStore.NewMordor(mHost, mUser, mPass, mDB, projectTable))
@@ -53,7 +51,7 @@ func main() {
 
 	//user
 	userRouter := router.PathPrefix("/api/1/user/").Subrouter()
-	service.NewUserService(userRouter, userCase, userPresenter)
+	service.NewUserService(userRouter, userCase)
 
 	//Project
 	projRouter := router.PathPrefix("/api/1/project/").Subrouter()
