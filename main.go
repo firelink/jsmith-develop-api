@@ -26,6 +26,7 @@ func init() {
 
 func main() {
 	router := mux.NewRouter()
+	router.Use(corsMiddleWare)
 
 	//Cache credentials
 	mHost := viper.GetString("mongo.host") + ":" + viper.GetString("mongo.port")
@@ -66,4 +67,11 @@ func main() {
 	if err != nil {
 		log.Fatalf("Could not start server: %s\n", err.Error())
 	}
+}
+
+func corsMiddleWare(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Access-Control-Allow-Origin", "*.jsmith-develop.com")
+		next.ServeHTTP(w, r)
+	})
 }
