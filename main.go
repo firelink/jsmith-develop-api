@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/firelink/api.jsmith-develop.com/argSea/repo"
 	"github.com/firelink/api.jsmith-develop.com/argSea/service"
@@ -62,7 +63,14 @@ func main() {
 	resumeRouter := router.PathPrefix("/api/1/resume/").Subrouter()
 	service.NewResumeService(resumeRouter, resumeCase)
 
-	err := http.ListenAndServe(":8080", router)
+	srv := &http.Server{
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		Addr:         "8080",
+		Handler:      router,
+	}
+
+	err := srv.ListenAndServe()
 
 	if err != nil {
 		log.Fatalf("Could not start server: %s\n", err.Error())
