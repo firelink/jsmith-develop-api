@@ -56,6 +56,8 @@ func (resume *resumeService) Create(w http.ResponseWriter, r *http.Request) {
 	encoder := json.NewEncoder(w)
 	encoder.SetIndent("", "    ")
 	encoder.Encode(finalModel)
+
+	r.Body.Close()
 }
 
 func (resume *resumeService) Get(w http.ResponseWriter, r *http.Request) {
@@ -82,6 +84,8 @@ func (resume *resumeService) Get(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(finalModel)
+
+	r.Body.Close()
 }
 
 func (resume *resumeService) GetByUser(w http.ResponseWriter, r *http.Request) {
@@ -107,6 +111,8 @@ func (resume *resumeService) GetByUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(finalModel)
+
+	r.Body.Close()
 }
 
 func (resume *resumeService) Update(w http.ResponseWriter, r *http.Request) {
@@ -137,6 +143,7 @@ func (resume *resumeService) Update(w http.ResponseWriter, r *http.Request) {
 	encoder.SetIndent("", "    ")
 	encoder.Encode(finalModel)
 
+	r.Body.Close()
 }
 
 func (resume *resumeService) Delete(w http.ResponseWriter, r *http.Request) {
@@ -166,4 +173,6 @@ func (resume *resumeService) Delete(w http.ResponseWriter, r *http.Request) {
 	encoder := json.NewEncoder(w)
 	encoder.SetIndent("", "    ")
 	encoder.Encode(finalModel)
+
+	r.Body.Close()
 }

@@ -55,6 +55,8 @@ func (u *userService) Create(w http.ResponseWriter, r *http.Request) {
 	encoder := json.NewEncoder(w)
 	encoder.SetIndent("", "    ")
 	encoder.Encode(finalModel)
+
+	r.Body.Close()
 }
 
 func (u *userService) Get(w http.ResponseWriter, r *http.Request) {
@@ -83,6 +85,8 @@ func (u *userService) Get(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(finalModel)
+
+	r.Body.Close()
 }
 
 func (u *userService) Update(w http.ResponseWriter, r *http.Request) {
@@ -113,6 +117,7 @@ func (u *userService) Update(w http.ResponseWriter, r *http.Request) {
 	encoder.SetIndent("", "    ")
 	encoder.Encode(finalModel)
 
+	r.Body.Close()
 }
 
 func (u *userService) Delete(w http.ResponseWriter, r *http.Request) {
@@ -142,4 +147,6 @@ func (u *userService) Delete(w http.ResponseWriter, r *http.Request) {
 	encoder := json.NewEncoder(w)
 	encoder.SetIndent("", "    ")
 	encoder.Encode(finalModel)
+
+	r.Body.Close()
 }

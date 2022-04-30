@@ -118,6 +118,8 @@ func (p *projectService) GetMany(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(finalModel)
+
+	r.Body.Close()
 }
 
 func (p *projectService) Get(w http.ResponseWriter, r *http.Request) {
@@ -144,6 +146,8 @@ func (p *projectService) Get(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(finalModel)
+
+	r.Body.Close()
 }
 
 func (p *projectService) GetByUser(w http.ResponseWriter, r *http.Request) {
@@ -200,6 +204,8 @@ func (p *projectService) GetByUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(finalModel)
+
+	r.Body.Close()
 }
 
 func (p *projectService) Update(w http.ResponseWriter, r *http.Request) {
@@ -229,6 +235,8 @@ func (p *projectService) Update(w http.ResponseWriter, r *http.Request) {
 	encoder := json.NewEncoder(w)
 	encoder.SetIndent("", "    ")
 	encoder.Encode(finalModel)
+
+	r.Body.Close()
 }
 
 func (p *projectService) Delete(w http.ResponseWriter, r *http.Request) {
@@ -258,4 +266,6 @@ func (p *projectService) Delete(w http.ResponseWriter, r *http.Request) {
 	encoder := json.NewEncoder(w)
 	encoder.SetIndent("", "    ")
 	encoder.Encode(finalModel)
+
+	r.Body.Close()
 }
