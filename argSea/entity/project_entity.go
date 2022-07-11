@@ -18,6 +18,7 @@ type Project struct {
 	Slug              string      `json:"slug" bson:"slug,omitempty"`
 	RepoURL           *string     `json:"repoURL" bson:"repoURL,omitempty"`
 	Description       *string     `json:"description" bson:"description,omitempty"`
+	Skills            *[]string   `json:"skills" bson:"skills,omitempty"`
 	Roles             *[]string   `json:"roles" bson:"roles,omitempty"`
 	Priority          int         `json:"priority" bson:"priority,omitempty"`
 	IsActive          bool        `json:"isActive" bson:"isActive,omitempty"`
