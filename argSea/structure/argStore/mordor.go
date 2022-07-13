@@ -30,7 +30,8 @@ func NewMordor(host string, user string, pass string, db string, table string) *
 }
 
 func (m *mordor) Get(ctx context.Context, field string, value interface{}, decoder interface{}) error {
-	m.init(ctx)
+	client, _ := m.init(ctx)
+	defer client.Disconnect(ctx)
 
 	if nil == m.collection {
 		return errors.New("Connection not setup")
@@ -56,7 +57,8 @@ func (m *mordor) Get(ctx context.Context, field string, value interface{}, decod
 }
 
 func (m *mordor) GetMany(ctx context.Context, field string, value interface{}, limit int64, offset int64, sort interface{}, decoder interface{}) (int64, error) {
-	m.init(ctx)
+	client, _ := m.init(ctx)
+	defer client.Disconnect(ctx)
 
 	if nil == m.collection {
 		return 0, errors.New("Connection not setup")
@@ -84,7 +86,8 @@ func (m *mordor) GetMany(ctx context.Context, field string, value interface{}, l
 }
 
 func (m *mordor) GetAll(ctx context.Context, limit int64, offset int64, sort interface{}, decoder interface{}) (int64, error) {
-	m.init(ctx)
+	client, _ := m.init(ctx)
+	defer client.Disconnect(ctx)
 
 	if nil == m.collection {
 		return 0, errors.New("Connection not setup")
@@ -112,7 +115,8 @@ func (m *mordor) GetAll(ctx context.Context, limit int64, offset int64, sort int
 }
 
 func (m *mordor) Write(ctx context.Context, data interface{}) (string, error) {
-	m.init(ctx)
+	client, _ := m.init(ctx)
+	defer client.Disconnect(ctx)
 
 	if nil == m.collection {
 		return "", errors.New("Connection not setup. Use mordor.Setup needs called first")
@@ -134,7 +138,8 @@ func (m *mordor) Write(ctx context.Context, data interface{}) (string, error) {
 }
 
 func (m *mordor) Update(ctx context.Context, key string, newData interface{}) error {
-	m.init(ctx)
+	client, _ := m.init(ctx)
+	defer client.Disconnect(ctx)
 
 	if nil == m.collection {
 		return errors.New("Connection not setup. Use mordor.Setup needs called first")
@@ -162,7 +167,8 @@ func (m *mordor) Update(ctx context.Context, key string, newData interface{}) er
 }
 
 func (m *mordor) Delete(ctx context.Context, key string) error {
-	m.init(ctx)
+	client, _ := m.init(ctx)
+	defer client.Disconnect(ctx)
 
 	if nil == m.collection {
 		return errors.New("Connection not setup. Use mordor.Setup needs called first")
@@ -183,7 +189,7 @@ func (m *mordor) Delete(ctx context.Context, key string) error {
 	return nil
 }
 
-func (m *mordor) init(ctx context.Context) error {
+func (m *mordor) init(ctx context.Context) (*mongo.Client, error) {
 	client, _ := mongo.NewClient(options.Client().ApplyURI("mongodb://" + m.user + ":" + m.pass + "@" + m.host + "/?authSource=admin&readPreference=primary&ssl=false"))
 	// ctx, _ := context.WithTimeout(context.Background(), time.Second+10)
 	clientErr := client.Connect(ctx)
@@ -191,5 +197,5 @@ func (m *mordor) init(ctx context.Context) error {
 
 	m.collection = collection
 
-	return clientErr
+	return client, clientErr
 }
